@@ -23,10 +23,26 @@
         const field = {
             widht: innerWidth,
             height: innerHeight,
-            draw: function () {
+            draw () {
                 // desenho do campo
             canvasCtx.fillStyle = '#286047'
-            canvasCtx.fillRect(0, 0, innerWidth, innerHeight) 
+            canvasCtx.fillRect(0, 0, this.widht, this.height) 
+            }
+        }
+
+        const line = {
+            widht: 15,
+            height: field.height,
+            draw () {
+                canvasCtx.fillStyle = '#fff'
+
+                // desenho da linha central
+                canvasCtx.fillRect(
+                    field.widht / 2 - this.widht / 2,
+                    0,
+                    this.widht,
+                    this.height
+                )
             }
         }
 
@@ -37,18 +53,11 @@
            canvasCtx.height = field.height
         }
 
+        
+
         const draw = () => { 
             field.draw()
-            
-            canvasCtx.fillStyle = '#fff'
-
-            // desenho da linha central
-            canvasCtx.fillRect(
-                innerWidth / 2 - lineWidth / 2,
-                0,
-                lineWidth,
-                innerHeight
-            )
+            line.draw()
 
             // desenho da raquete esquerda
             canvasCtx.fillRect(10, 100, lineWidth, 200)
